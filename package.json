@@ -2,19 +2,21 @@
   "name": "node-xiaomi-smart-home",
   "version": "0.1.0",
   "description": "Node.js module for Xiaomi/Aquara smart home hub",
-  "main": "index.js",
+  "main": "build/Hub.js",
   "scripts": {
     "start": "pm2 start pm2.config.js",
+    "prepublish": "./node_modules/typescript/bin/tsc -p tsconfig.json "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/quibusus/node-xiaomi-smart-home.git"
   },
-  "author": "Karol Danko (quibusus)",
+  "author": "Karol Danko <quibusus@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/quibusus/node-xiaomi-smart-home/issues"
   },
+
   "homepage": "https://github.com/quibusus/node-xiaomi-smart-home#readme",
   "devDependencies": {
     "@types/node": "^6.0.59",
