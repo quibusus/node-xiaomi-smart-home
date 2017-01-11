@@ -1,6 +1,6 @@
 {
   "name": "node-xiaomi-smart-home",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js module for Xiaomi/Aquara smart home hub",
   "main": "build/Hub.js",
   "scripts": {

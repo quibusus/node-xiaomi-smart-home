@@ -2,6 +2,8 @@
 Node.js module for [Xiaomi smart home](http://xiaomi-mi.com/smart-home/xiaomi-mi-smart-home-kit/) (also branded as Aquara)  
 
 
+![xiaomi smart home hub](https://raw.githubusercontent.com/quibusus/node-xiaomi-smart-home/master/xiaomi.jpg)
+
 
 # Credit
 This code is based on works of [Jonathan Schemoul, HackSpark.fr](https://github.com/jon1012/mihome)
