@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "cosmmonjs",
+//        "target": "es6",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "build",
+        "sourceMap": true
+    },
+
+    "include": [
+        "src/**/*"
+    ]
+}
