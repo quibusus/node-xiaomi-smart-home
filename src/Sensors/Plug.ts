@@ -1,14 +1,14 @@
 import GenericSensor from "./GenericSensor";
 import HubMessage from "../Types/HubMessage";
-export default class MotionSensor extends GenericSensor {
+export default class Plug extends GenericSensor {
 
-    private motion: boolean = null;
+    private on: boolean;
     onMessage(message: HubMessage)
     {
-        this.motion = message.data.status == 'motion'
+        this.on = message.data.status == 'on'
         if (message.cmd == 'report' || message.cmd == 'read_ack')
         {
-            this.hub.emit('data.motion', this.sid, this.motion);
+              this.hub.emit('data.plug', this.sid, this.on);
         }
     }
 }

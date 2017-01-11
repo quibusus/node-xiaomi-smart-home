@@ -1,21 +1,45 @@
-import GenericSensor from "./Sensors/GenericSensor";
+
 
 import Hub from "./Hub"
 
-
 let hub = new Hub();
-
-let thSensor = hub.sensorFactory('158d000116df97', hub.sensorTypes.th);
-thSensor.on('change', function (data: any) {
-    console.info("got thermometer value:", data);
-});
-
 hub.listen();
 
-// hub.on('message', function (message:any) {
-//     console.info("got message:", JSON.stringify(message));
-// });
-
-hub.on('data', function (sensor:GenericSensor) {
-    console.info("got value:", sensor.sid, sensor.data);
+hub.on('message', function (message:any) {
+    // raw message received from the xiaomi smart hub
 });
+
+hub.on('error', function (e: Error) {
+
+});
+
+hub.on('data.button', function (sid: string, type: string) {
+    // type can be click, double_click, long_click_press, long_click_release
+    if (type == hub.clickTypes.double_click)
+    {
+        // do something
+    }
+    console.info('BUTTON', sid, type);
+});
+
+hub.on('data.magnet', function (sid: string, closed: boolean) {
+    console.info('MAGNET', sid, closed);
+
+});
+
+hub.on('data.motion', function (sid: string, motion: boolean) {
+    console.info('motion', sid, motion);
+});
+
+hub.on('data.th', function (sid: string, temperature: number, humidity: number) {
+    console.info('th', sid, temperature, humidity);
+});
+
+hub.on('data.plug', function (sid: string, on: boolean) {
+    console.info('plug', sid, on);
+});
+
+
+
+
+

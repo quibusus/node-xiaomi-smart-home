@@ -6,8 +6,9 @@ import GenericSensor from "./Sensors/GenericSensor";
 import HubMessage from "./Types/HubMessage";
 import THSensor from "./Sensors/THSensor";
 import DoorSensor from "./Sensors/DoorSensor";
-import Switch from "./Sensors/Switch";
 import MotionSensor from "./Sensors/MotionSensor";
+import Plug from "./Sensors/Plug";
+import Button from "./Sensors/Button";
 
 
 export default class Hub extends events.EventEmitter{
@@ -15,11 +16,19 @@ export default class Hub extends events.EventEmitter{
     sensors: { [id: string]: Sensor;} = {};
     sensorTypes = {
         gateway: 'gateway',
-        th: 'sensor_ht`',
-        switch: 'switch',
+        th: 'sensor_ht',
+        // renamed for clarity and not to use switch keyword
+        button: 'switch',
         plug: 'plug',
-        door: 'door',
+        magnet: 'magnet',
         motion: 'motion'
+    };
+
+    clickTypes = {
+        click: 'click',
+        double_click: 'double_click',
+        long_click_press: 'long_click_press',
+        long_click_release: 'long_click_release',
     };
 
     constructor() {
@@ -43,8 +52,7 @@ export default class Hub extends events.EventEmitter{
         this.socket.close(cb);
     }
 
-
-    onListening()
+    private onListening()
     {
         this.socket.setBroadcast(true);
         this.socket.setMulticastTTL(128);
@@ -59,7 +67,7 @@ export default class Hub extends events.EventEmitter{
      *
      * @param err
      */
-    onError(err: Error)
+    private onError(err: Error)
     {
         this.emit('error', err);
     }
@@ -69,7 +77,7 @@ export default class Hub extends events.EventEmitter{
      * @param msgBuffer
      * @param rinfo
      */
-    onMessage(msgBuffer:Buffer)
+    private onMessage(msgBuffer:Buffer)
     {
 
         try {
@@ -80,15 +88,18 @@ export default class Hub extends events.EventEmitter{
             return
         }
 
-        if(!msg.model)
-        {
-            return;
-        }
-
         let sensor = this.getSensor(msg.sid);
         if (!sensor)
         {
-            sensor = this.sensorFactory(msg.sid, msg.model);
+            if (!msg.model)
+            {
+                return;
+            }
+            try {
+                sensor = this.sensorFactory(msg.sid, msg.model);
+            }catch(e){
+                this.emit('warning', 'Could not add new sensor: ' + e.message);
+            }
         }
 
         // set heartbeat on all commands, we know that the sensor is alive
@@ -117,7 +128,7 @@ export default class Hub extends events.EventEmitter{
      *
      */
 
-    sensorFactory(sid: string, model: string)
+    private sensorFactory(sid: string, model: string)
     {
         let sensor: GenericSensor = null;
         switch(model)
@@ -130,16 +141,16 @@ export default class Hub extends events.EventEmitter{
                 sensor = new THSensor(sid, this);
                 break
 
-            case this.sensorTypes.door:
+            case this.sensorTypes.magnet:
                 sensor = new DoorSensor(sid, this);
                 break
 
-            case this.sensorTypes.switch:
-                sensor = new Switch(sid, this);
+            case this.sensorTypes.button:
+                sensor = new Button(sid, this);
                 break
 
-            case this.sensorTypes.door:
-                sensor = new DoorSensor(sid, this);
+            case this.sensorTypes.plug:
+                sensor = new Plug(sid, this);
                 break
 
             case this.sensorTypes.motion:
@@ -159,12 +170,16 @@ export default class Hub extends events.EventEmitter{
      *
      * @param sid
      */
-    getSensor(sid: string): Sensor
+    private getSensor(sid: string): Sensor
     {
         return this.sensors[sid] ? this.sensors[sid] : null;
     }
 
-    registerSensor(sensor: Sensor)
+    /**
+     *
+     * @param sensor
+     */
+    private registerSensor(sensor: Sensor)
     {
         this.sensors[sensor.sid] = sensor;
     }
