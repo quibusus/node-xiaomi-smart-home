@@ -11,7 +11,7 @@ import Plug from "./Sensors/Plug";
 import Button from "./Sensors/Button";
 
 
-export default class Hub extends events.EventEmitter{
+export class Hub extends events.EventEmitter{
     socket: Socket;
     sensors: { [id: string]: Sensor;} = {};
     sensorTypes = {
