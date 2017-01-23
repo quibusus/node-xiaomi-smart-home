@@ -1,4 +1,4 @@
-import Hub from "../Hub";
+import {Hub} from "../Hub";
 import HubMessage from "../Types/HubMessage";
 export default class GenericSensor{
 

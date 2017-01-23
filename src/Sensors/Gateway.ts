@@ -1,5 +1,5 @@
 import GenericSensor from "./GenericSensor";
-import Hub from "../Hub";
+import {Hub} from "../Hub";
 import HubMessage from "../Types/HubMessage";
 export default class Gateway extends GenericSensor {
 

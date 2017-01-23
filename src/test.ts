@@ -1,6 +1,6 @@
 
 
-import Hub from "./Hub"
+import {Hub} from "./Hub"
 
 let hub = new Hub();
 hub.listen();

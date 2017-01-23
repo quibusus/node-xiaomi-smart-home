@@ -1,5 +1,5 @@
-import {Hub} from "./../src/Hub"
-// import {Hub} from "node-xiaomi-smart-home"
+import {Hub} from "node-xiaomi-smart-home"
+//import {Hub} from "./../src/Hub"
 
 let hub = new Hub();
 hub.listen();
