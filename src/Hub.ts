@@ -99,6 +99,7 @@ export class Hub extends events.EventEmitter{
                 sensor = this.sensorFactory(msg.sid, msg.model);
             }catch(e){
                 this.emit('warning', 'Could not add new sensor: ' + e.message);
+                return;
             }
         }
 
