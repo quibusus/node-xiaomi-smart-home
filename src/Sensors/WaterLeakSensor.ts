@@ -1,6 +1,6 @@
 import GenericSensor from "./GenericSensor";
 import HubMessage from "../Types/HubMessage";
-export default class Button extends GenericSensor {
+export default class WaterLeakSensor extends GenericSensor {
 
     onMessage(message: HubMessage)
     {
