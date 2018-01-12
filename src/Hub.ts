@@ -9,7 +9,8 @@ import DoorSensor from "./Sensors/DoorSensor";
 import MotionSensor from "./Sensors/MotionSensor";
 import Plug from "./Sensors/Plug";
 import Button from "./Sensors/Button";
-
+import WaterLeak from "./Sensors/WaterLeakSensor";
+import Weather from "./Sensors/WeatherSensor";
 
 export class Hub extends events.EventEmitter{
     socket: Socket;
@@ -21,7 +22,10 @@ export class Hub extends events.EventEmitter{
         button: 'switch',
         plug: 'plug',
         magnet: 'magnet',
-        motion: 'motion'
+        motion: 'motion',
+        weather: 'weather.v1',
+        new_magnet: 'sensor_magnet.aq2',
+        waterleak:'sensor_wleak.aq1'
     };
 
     clickTypes = {
@@ -29,6 +33,11 @@ export class Hub extends events.EventEmitter{
         double_click: 'double_click',
         long_click_press: 'long_click_press',
         long_click_release: 'long_click_release',
+    };
+
+    leakTypes = {
+        leak: 'leak',
+        no_leak: 'no_leak',
     };
 
     constructor() {
@@ -143,6 +152,7 @@ export class Hub extends events.EventEmitter{
                 break
 
             case this.sensorTypes.magnet:
+            case this.sensorTypes.new_magnet:
                 sensor = new DoorSensor(sid, this);
                 break
 
@@ -156,6 +166,14 @@ export class Hub extends events.EventEmitter{
 
             case this.sensorTypes.motion:
                 sensor = new MotionSensor(sid, this);
+                break
+
+            case this.sensorTypes.weather:
+                sensor = new Weather(sid, this);
+                break
+
+            case this.sensorTypes.waterleak:
+                sensor = new WaterLeak(sid, this);
                 break
 
             default:

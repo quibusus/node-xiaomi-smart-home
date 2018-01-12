@@ -40,6 +40,14 @@ hub.on('data.plug', function (sid: string, on: boolean) {
 });
 
 
+hub.on('data.weather', function (sid: string, temperature: number, humidity: number, pressure:number) {
+    console.info('weather', sid, temperature, humidity, pressure);
+});
+
+hub.on('data.waterleak', function (sid: string, leak:string) {
+    console.info('leak', sid, leak);
+});
+
 
 
 
