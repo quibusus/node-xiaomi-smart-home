@@ -37,8 +37,8 @@ export class Hub extends events.EventEmitter{
     
     listen() {
         let dgram = require('dgram')
-        this.socket = createSocket('udp4');
-
+        this.socket = createSocket({type:'udp4', reuseAddr: true});
+        
         let multicastPort = 9898;
 
         this.socket.on('message', this.onMessage.bind(this));
