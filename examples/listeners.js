@@ -38,3 +38,7 @@ hub.on('data.plug', function (sid, on) {
     console.info('plug', sid, on);
 });
 
+hub.on('data.weather', function (sid, temperature, humidity, pressure) {
+    console.info('th', sid, temperature, humidity, pressure);
+});
+
