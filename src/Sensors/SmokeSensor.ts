@@ -26,7 +26,7 @@ export default class SmokeSensor extends GenericSensor {
 
         if (message.cmd == 'report' || message.cmd == 'read_ack')
         {
-            this.hub.emit('data.somke', this.sid, this.voltage, this.density, this.alarm);
+            this.hub.emit('data.smoke', this.sid, this.voltage, this.density, this.alarm);
         }
     }
 }
