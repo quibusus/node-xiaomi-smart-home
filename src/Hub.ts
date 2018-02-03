@@ -11,6 +11,7 @@ import Plug from "./Sensors/Plug";
 import Button from "./Sensors/Button";
 import WaterLeak from "./Sensors/WaterLeakSensor";
 import Weather from "./Sensors/WeatherSensor";
+import SmokeSensor from './Sensors/SmokeSensor';
 
 export class Hub extends events.EventEmitter{
     socket: Socket;
@@ -25,7 +26,8 @@ export class Hub extends events.EventEmitter{
         motion: 'motion',
         weather: 'weather.v1',
         new_magnet: 'sensor_magnet.aq2',
-        waterleak:'sensor_wleak.aq1'
+        waterleak:'sensor_wleak.aq1',
+        smoke: 'smoke'
     };
 
     clickTypes = {
@@ -175,6 +177,10 @@ export class Hub extends events.EventEmitter{
             case this.sensorTypes.waterleak:
                 sensor = new WaterLeak(sid, this);
                 break
+            
+            case this.sensorTypes.smoke:
+                sensor = new SmokeSensor(sid, this);
+                break;
 
             default:
                 throw new Error('Type `' + model + '` is not valid, use one of  Hub::sensorTypes');
