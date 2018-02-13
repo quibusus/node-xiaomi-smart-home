@@ -20,6 +20,7 @@ export class Hub extends events.EventEmitter{
         th: 'sensor_ht',
         // renamed for clarity and not to use switch keyword
         button: 'switch',
+        new_button: 'sensor_switch.aq2',
         plug: 'plug',
         magnet: 'magnet',
         motion: 'motion',
@@ -157,6 +158,7 @@ export class Hub extends events.EventEmitter{
                 break
 
             case this.sensorTypes.button:
+            case this.sensorTypes.new_button:
                 sensor = new Button(sid, this);
                 break
 
