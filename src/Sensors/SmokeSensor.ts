@@ -20,7 +20,7 @@ export default class SmokeSensor extends GenericSensor {
 
         if (message.data.alarm)
         {
-            this.alarm = message.data.alarm === true || message.data.alarm.toLowerCase() === 'true';
+            this.alarm = message.data.alarm === '1';
         }
 
 
