@@ -1,5 +1,5 @@
 var Hub = require("node-xiaomi-smart-home").Hub;
-//var Hub = require("./../src/Hub").Hub;
+// var Hub = require("./../src/Hub").Hub;
 
 let hub = new Hub();
 hub.listen();
@@ -12,7 +12,7 @@ hub.on('error', function (e) {
 
 });
 
-hub.on('data.button', function (sid, type) {
+hub.on('data.button', function (sid, type, battery) {
     // type can be click, double_click, long_click_press, long_click_release
     if (type == hub.clickTypes.double_click)
     {
@@ -21,24 +21,24 @@ hub.on('data.button', function (sid, type) {
     console.info('BUTTON', sid, type);
 });
 
-hub.on('data.magnet', function (sid, closed) {
-    console.info('MAGNET', sid, closed);
+hub.on('data.magnet', function (sid, closed, battery) {
+    console.info('MAGNET', sid, closed, battery);
 
 });
 
-hub.on('data.motion', function (sid, motion) {
-    console.info('motion', sid, motion);
+hub.on('data.motion', function (sid, motion, battery) {
+    console.info('motion', sid, motion, battery);
 });
 
-hub.on('data.th', function (sid, temperature, humidity) {
-    console.info('th', sid, temperature, humidity);
+hub.on('data.th', function (sid, temperature, humidity, battery) {
+    console.info('th', sid, temperature, humidity, battery);
 });
 
 hub.on('data.plug', function (sid, on) {
     console.info('plug', sid, on);
 });
 
-hub.on('data.weather', function (sid, temperature, humidity, pressure) {
-    console.info('th', sid, temperature, humidity, pressure);
+hub.on('data.weather', function (sid, temperature, humidity, pressure, battery) {
+    console.info('th', sid, temperature, humidity, pressure, battery);
 });
 
