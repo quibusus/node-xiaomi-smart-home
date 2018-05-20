@@ -1,5 +1,5 @@
 var Hub = require("node-xiaomi-smart-home").Hub;
-// var Hub = require("./../src/Hub").Hub;
+//var Hub = require("./../src/Hub").Hub;
 
 let hub = new Hub();
 hub.listen();
