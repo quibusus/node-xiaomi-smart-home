@@ -4,6 +4,7 @@ export default class SmokeSensor extends GenericSensor {
 
     private voltage: number = null;
     private density: number = null;
+    private battery: number = null;
     private alarm: boolean = false;
 
     onMessage(message: HubMessage)
@@ -23,10 +24,16 @@ export default class SmokeSensor extends GenericSensor {
             this.alarm = message.data.alarm === '1';
         }
 
+        if (message.data.voltage)
+        {
+            this.battery = (parseInt(message.data.voltage) - this.minVolt) / (this.maxVolt - this.minVolt);
+            this.battery = Math.round(this.battery * 100);
+        }
+
 
         if (message.cmd == 'report' || message.cmd == 'read_ack')
         {
-            this.hub.emit('data.smoke', this.sid, this.voltage, this.density, this.alarm);
+            this.hub.emit('data.smoke', this.sid, this.voltage, this.density, this.alarm, this.battery);
         }
     }
 }

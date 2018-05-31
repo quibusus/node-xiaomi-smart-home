@@ -5,6 +5,7 @@ export default class WeatherSensor extends GenericSensor {
     private temperature: number = null;
     private humidity: number = null;
     private pressure: number = null;
+    private battery: number = null;
 
     onMessage(message: HubMessage)
     {
@@ -23,10 +24,16 @@ export default class WeatherSensor extends GenericSensor {
             this.pressure = parseInt(message.data.pressure);
         }
 
+        if (message.data.voltage)
+        {
+            this.battery = (parseInt(message.data.voltage) - this.minVolt) / (this.maxVolt - this.minVolt);
+            this.battery = Math.round(this.battery * 100);
+        }
+
 
         if (message.cmd == 'report' || message.cmd == 'read_ack')
         {
-            this.hub.emit('data.weather', this.sid, this.temperature, this.humidity, this.pressure);
+            this.hub.emit('data.weather', this.sid, this.temperature, this.humidity, this.pressure, this.battery);
         }
     }
 }

@@ -5,6 +5,8 @@ export default class GenericSensor{
     private lastHeartBeat: number = null;
     data: any = {};
     hub: Hub;
+    minVolt: number = 2000;
+    maxVolt: number = 3100;
 
     sid: string;
     type: string = null;
