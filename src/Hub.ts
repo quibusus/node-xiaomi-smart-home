@@ -26,6 +26,7 @@ export class Hub extends events.EventEmitter{
         magnet: 'magnet',
         magnetAq2: 'sensor_magnet.aq2',
         motion: 'motion',
+        motionAq2: 'sensor_motion.aq2',
         weather: 'weather.v1',
         waterleak:'sensor_wleak.aq1',
         smoke: 'smoke'
@@ -169,6 +170,7 @@ export class Hub extends events.EventEmitter{
                 break
 
             case this.sensorTypes.motion:
+            case this.sensorTypes.motionAq2:
                 sensor = new MotionSensor(sid, this);
                 break
 
