@@ -21,11 +21,12 @@ export class Hub extends events.EventEmitter{
         th: 'sensor_ht',
         // renamed for clarity and not to use switch keyword
         button: 'switch',
+        buttonAq2: 'sensor_switch.aq2',
         plug: 'plug',
         magnet: 'magnet',
+        magnetAq2: 'sensor_magnet.aq2',
         motion: 'motion',
         weather: 'weather.v1',
-        new_magnet: 'sensor_magnet.aq2',
         waterleak:'sensor_wleak.aq1',
         smoke: 'smoke'
     };
@@ -45,11 +46,11 @@ export class Hub extends events.EventEmitter{
     constructor() {
         super();
     }
-    
+
     listen() {
         let dgram = require('dgram')
         this.socket = createSocket({type:'udp4', reuseAddr: true});
-        
+
         let multicastPort = 9898;
 
         this.socket.on('message', this.onMessage.bind(this));
@@ -154,11 +155,12 @@ export class Hub extends events.EventEmitter{
                 break
 
             case this.sensorTypes.magnet:
-            case this.sensorTypes.new_magnet:
+            case this.sensorTypes.magnetAq2:
                 sensor = new DoorSensor(sid, this);
                 break
 
             case this.sensorTypes.button:
+            case this.sensorTypes.buttonAq2:
                 sensor = new Button(sid, this);
                 break
 
@@ -177,7 +179,7 @@ export class Hub extends events.EventEmitter{
             case this.sensorTypes.waterleak:
                 sensor = new WaterLeak(sid, this);
                 break
-            
+
             case this.sensorTypes.smoke:
                 sensor = new SmokeSensor(sid, this);
                 break;
