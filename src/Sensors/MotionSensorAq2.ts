@@ -14,20 +14,21 @@ export default class MotionSensorAq2 extends GenericSensor {
             this.battery = Math.round(this.battery * 100);
         }
 
-        if (message.data.light)
+        if (message.data.lux)
         {
-            this.light = parseInt(message.data.light);
+            this.light = parseInt(message.data.lux);
         }
 
-        if (message.data.inactivity)
+        if (message.data.no_motion)
         {
-            this.inactivity = parseInt(message.data.inactivity);
+            this.inactivity = parseInt(message.data.no_motion);
         }
 
         this.motion = message.data.status == 'motion'
+
         if (message.cmd == 'report' || message.cmd == 'read_ack')
         {
-            this.hub.emit('data.motion', this.sid, this.motion, this.light, this.inactivity, this.battery);
+            this.hub.emit('data.motionAq2', this.sid, this.motion, this.light, this.inactivity, this.battery);
         }
     }
 }
