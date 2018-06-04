@@ -6,7 +6,7 @@ export default class GenericSensor{
     data: any = {};
     hub: Hub;
     minVolt: number = 2000;
-    maxVolt: number = 3100;
+    maxVolt: number = 3300;
 
     sid: string;
     type: string = null;
