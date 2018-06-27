@@ -30,6 +30,10 @@ hub.on('data.motion', function (sid: string, motion: boolean, battery: number) {
     console.info('motion', sid, motion, battery);
 });
 
+hub.on('data.motionAq2', function (sid: string, motion: boolean, light: number, inactivity: number, battery: number) {
+    console.info('motion', sid, motion, light, inactivity, battery);
+});
+
 hub.on('data.th', function (sid: string, temperature: number, humidity: number, battery: number) {
     console.info('th', sid, temperature, humidity, battery);
 });
