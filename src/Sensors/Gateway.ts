@@ -1,31 +1,25 @@
-import GenericSensor from "./GenericSensor";
 import {Hub} from "../Hub";
-import HubMessage from "../Types/HubMessage";
+import IHubMessage from "../Types/IHubMessage";
+import GenericSensor from "./GenericSensor";
 export default class Gateway extends GenericSensor {
-
-
 
     constructor(sid: string, hub: Hub) {
         super(sid, hub);
-        this.hub.sendMessage({cmd: "get_id_list", sid: sid});
+        this.hub.sendMessage({cmd: "get_id_list", sid});
 
     }
 
-    onMessage(message: HubMessage)
-    {
-        if (message.cmd == 'get_id_list_ack')
-        {
+    public onMessage(message: IHubMessage) {
+        if (message.cmd === "get_id_list_ack") {
             this.initSensors(message.data);
         }
 
     }
 
-    initSensors(sids: string[])
-    {
-        for (let sid of sids) {
-            this.hub.sendMessage({cmd: "read", sid: sid});
+    public initSensors(sids: string[]) {
+        for (const sid of sids) {
+            this.hub.sendMessage({cmd: "read", sid});
         }
     }
 
 }
-

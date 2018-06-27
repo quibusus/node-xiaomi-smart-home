@@ -7,6 +7,7 @@
   "scripts": {
     "start": "pm2 start pm2.config.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint-fix": "tslint --fix -c tslint.json 'src/**/*.ts' -t verbose",
     "prepare": "./node_modules/typescript/bin/tsc -p tsconfig.json && ./node_modules/dts-generator/bin/dts-generator --name node-xiaomi-smart-home --project . --out typings.d.ts"
   },
   "repository": {

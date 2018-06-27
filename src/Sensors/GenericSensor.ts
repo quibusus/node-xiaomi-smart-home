@@ -1,32 +1,26 @@
 import {Hub} from "../Hub";
-import HubMessage from "../Types/HubMessage";
-export default class GenericSensor{
+import IHubMessage from "../Types/IHubMessage";
+export default class GenericSensor {
+    public data: any = {};
+    public hub: Hub;
+    public minVolt: number = 2000;
+    public maxVolt: number = 3300;
+
+    public sid: string;
+    public type: string = null;
 
     private lastHeartBeat: number = null;
-    data: any = {};
-    hub: Hub;
-    minVolt: number = 2000;
-    maxVolt: number = 3300;
-
-    sid: string;
-    type: string = null;
-
 
     constructor(sid: string, hub: Hub) {
         this.sid = sid;
         this.hub = hub;
     }
 
-    onMessage(message: HubMessage)
-    {
-
+    public onMessage(message: IHubMessage) {
+        //
     }
 
-
-
-    heartBeat()
-    {
+    public heartBeat() {
         this.lastHeartBeat = (new Date()).getTime();
     }
 }
-
