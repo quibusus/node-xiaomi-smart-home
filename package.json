@@ -6,6 +6,7 @@
   "types": "./typings.d.ts",
   "scripts": {
     "start": "pm2 start pm2.config.js",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "prepare": "./node_modules/typescript/bin/tsc -p tsconfig.json && ./node_modules/dts-generator/bin/dts-generator --name node-xiaomi-smart-home --project . --out typings.d.ts"
   },
   "repository": {
@@ -26,7 +27,8 @@
   "homepage": "https://github.com/quibusus/node-xiaomi-smart-home#readme",
   "devDependencies": {
     "@types/node": "^6.0.59",
-    "typescript": "^2.1.4"
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "dts-generator": "^2.1.0"
