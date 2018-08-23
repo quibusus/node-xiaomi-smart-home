@@ -34,7 +34,7 @@ hub.on('data.motionAq2', function (sid: string, motion: boolean, light: number, 
     console.info('motion', sid, motion, light, inactivity, battery);
 });
 
-hub.on('data.th', function (sid: string, temperature: number, humidity: number, battery: number) {
+hub.on('data.weather', function (sid: string, temperature: number, humidity: number, battery: number) {
     console.info('th', sid, temperature, humidity, battery);
 });
 
