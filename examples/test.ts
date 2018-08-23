@@ -1,5 +1,4 @@
-import {Hub} from "node-xiaomi-smart-home"
-//import {Hub} from "./../src/Hub"
+const Hub = require('node-xiaomi-smart-home').Hub;
 
 let hub = new Hub();
 hub.listen();
