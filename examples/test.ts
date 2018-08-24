@@ -38,6 +38,10 @@ hub.on('data.th', function (sid: string, temperature: number, humidity: number, 
     console.info('th', sid, temperature, humidity, battery);
 });
 
+hub.on('data.weather', function (sid: string, temperature: number, humidity: number, pressure: number, battery: number) {
+    console.info('weather', sid, temperature, humidity, pressure, battery);
+});
+
 hub.on('data.plug', function (sid: string, on: boolean) {
     console.info('plug', sid, on);
 });
