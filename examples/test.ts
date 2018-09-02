@@ -1,5 +1,5 @@
-import {Hub} from "node-xiaomi-smart-home"
-//import {Hub} from "./../src/Hub"
+//import {Hub} from "node-xiaomi-smart-home"
+import {Hub} from "./../src/Hub"
 
 let hub = new Hub();
 hub.listen();
@@ -42,7 +42,11 @@ hub.on('data.plug', function (sid: string, on: boolean) {
     console.info('plug', sid, on);
 });
 
-
-
-
-
+hub.on('data.cube', function (sid: string, type: string, battery: number) {
+    // could flip90 , flip180 , move , tap_twice , shake_air , swing , alert , free_fall
+    if (type == hub.cubeTypes.shake_air)
+    {
+        // do something
+    }
+    console.info('CUBE', sid, type, battery);
+});
