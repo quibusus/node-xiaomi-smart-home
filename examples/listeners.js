@@ -5,7 +5,7 @@ let hub = new Hub();
 hub.listen();
 
 hub.on('message', function (message) {
-    console.log(message)// raw message received from the xiaomi smart hub
+    // raw message received from the xiaomi smart hub
 });
 
 hub.on('error', function (e) {
