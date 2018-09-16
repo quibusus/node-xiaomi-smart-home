@@ -11,6 +11,7 @@ import SmokeSensor from "./Sensors/SmokeSensor";
 import THSensor from "./Sensors/THSensor";
 import WaterLeak from "./Sensors/WaterLeakSensor";
 import Weather from "./Sensors/WeatherSensor";
+import Cube from "./Sensors/Cube";
 import IHubMessage from "./Types/IHubMessage";
 
 export class Hub extends events.EventEmitter {
@@ -31,6 +32,7 @@ export class Hub extends events.EventEmitter {
         smoke: "smoke",
         waterleak: "sensor_wleak.aq1",
         weather: "weather.v1",
+        cube: "sensor_cube.aqgl01",
     };
 
     public clickTypes = {
@@ -38,6 +40,17 @@ export class Hub extends events.EventEmitter {
         double_click: "double_click",
         long_click_press: "long_click_press",
         long_click_release: "long_click_release",
+    };
+
+    public cubeTypes = {
+        flip90: "flip90",
+        flip180: "flip180",
+        move: "move",
+        tap_twice: "tap_twice",
+        shake_air: "shake_air",
+        swing: "swing",
+        alert: "alert",
+        free_fall: "free_fall",
     };
 
     public leakTypes = {
@@ -175,6 +188,10 @@ export class Hub extends events.EventEmitter {
 
             case this.sensorTypes.smoke:
                 sensor = new SmokeSensor(sid, this);
+                break;
+
+            case this.sensorTypes.cube:
+                sensor = new Cube(sid, this);
                 break;
 
             default:

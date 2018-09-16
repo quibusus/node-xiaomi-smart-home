@@ -46,3 +46,12 @@ hub.on('data.weather', function (sid, temperature, humidity, pressure, battery) 
     console.info('th', sid, temperature, humidity, pressure, battery);
 });
 
+hub.on('data.cube', function (sid, type, battery) {
+    // could flip90 , flip180 , move , tap_twice , shake_air , swing , alert , free_fall
+    if (type == hub.cubeTypes.shake_air)
+    {
+        // do something
+    }
+    console.info('CUBE', sid, type, battery);
+});
+
