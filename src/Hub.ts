@@ -1,6 +1,7 @@
 import { AddressInfo, createSocket, Socket } from "dgram";
 import events = require("events");
 import Button from "./Sensors/Button";
+import Cube from "./Sensors/Cube";
 import DoorSensor from "./Sensors/DoorSensor";
 import Gateway from "./Sensors/Gateway";
 import GenericSensor from "./Sensors/GenericSensor";
@@ -11,7 +12,6 @@ import SmokeSensor from "./Sensors/SmokeSensor";
 import THSensor from "./Sensors/THSensor";
 import WaterLeak from "./Sensors/WaterLeakSensor";
 import Weather from "./Sensors/WeatherSensor";
-import Cube from "./Sensors/Cube";
 import IHubMessage from "./Types/IHubMessage";
 
 export class Hub extends events.EventEmitter {
@@ -24,6 +24,7 @@ export class Hub extends events.EventEmitter {
          // renamed for clarity and not to use switch keyword
         button: "switch",
         buttonAq2: "sensor_switch.aq2",
+        cube: "sensor_cube.aqgl01",
         magnet: "magnet",
         magnetAq2: "sensor_magnet.aq2",
         motion: "motion",
@@ -32,7 +33,6 @@ export class Hub extends events.EventEmitter {
         smoke: "smoke",
         waterleak: "sensor_wleak.aq1",
         weather: "weather.v1",
-        cube: "sensor_cube.aqgl01",
     };
 
     public clickTypes = {
@@ -43,14 +43,14 @@ export class Hub extends events.EventEmitter {
     };
 
     public cubeTypes = {
-        flip90: "flip90",
+        alert: "alert",
         flip180: "flip180",
+        flip90: "flip90",
+        free_fall: "free_fall",
         move: "move",
-        tap_twice: "tap_twice",
         shake_air: "shake_air",
         swing: "swing",
-        alert: "alert",
-        free_fall: "free_fall",
+        tap_twice: "tap_twice",
     };
 
     public leakTypes = {
