@@ -1,14 +1,14 @@
 {
   "name": "node-xiaomi-smart-home",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Node.js module for Xiaomi/Aquara smart home hub",
   "main": "build/Hub.js",
-  "types": "./typings.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "start": "pm2 start pm2.config.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c tslint.json 'src/**/*.ts' -t verbose",
-    "prepare": "./node_modules/typescript/bin/tsc -p tsconfig.json && ./node_modules/dts-generator/bin/dts-generator --name node-xiaomi-smart-home --project . --out typings.d.ts"
+    "prepare": "./node_modules/typescript/bin/tsc -p tsconfig.json && ./node_modules/dts-generator/bin/dts-generator --name node-xiaomi-smart-home --project . --out index.d.ts"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/quibusus/node-xiaomi-smart-home#readme",
   "devDependencies": {
-    "@types/node": "^6.0.59",
-    "tslint": "^5.10.0",
+    "@types/node": "^6.14.9",
+    "tslint": "^5.20.1",
     "typescript": "^2.9.2"
   },
   "dependencies": {
