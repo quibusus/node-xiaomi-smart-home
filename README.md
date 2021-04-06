@@ -1,4 +1,13 @@
 # node-xiaomi-smart-home
+
+**!! Please note - this module is no longer maintained !!**
+
+I recommend [Home Assistant](https://www.home-assistant.io/) as the platform for integration. Works really well.
+
+
+
+----
+
 Node.js module for [Xiaomi smart home](http://xiaomi-mi.com/smart-home/xiaomi-mi-smart-home-kit/) (also branded as Aquara)
   
 Use this module to get data from Xiaomi sensors - temperature/humidity, magnet switch, button (switch), motion sensor
